@@ -18,9 +18,9 @@ namespace FootballTeamGenerator
         public string Name
         {
             get { return name; }
-            set
+            private set
             {
-                if (string.IsNullOrEmpty(value) || string.IsNullOrWhiteSpace(value))
+                if (string.IsNullOrWhiteSpace(value))
                 {
                     throw new ArgumentException("A name should not be empty.");
                 }

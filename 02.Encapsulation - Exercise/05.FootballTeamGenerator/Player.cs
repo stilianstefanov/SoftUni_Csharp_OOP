@@ -26,18 +26,19 @@ namespace FootballTeamGenerator
         public string Name
         {
             get { return name; }
-            set
+            private set
             {
-                if (string.IsNullOrEmpty(value) || string.IsNullOrWhiteSpace(value))
+                if (string.IsNullOrWhiteSpace(value))
                 {
                     throw new ArgumentException("A name should not be empty.");
                 }
                 name = value;
             }
         }
-        private int Endurance
+        public int Endurance
         {
-            set
+            get { return endurance; }
+            private set
             {
                 if (ValidateStats("Endurance", value))
                 {
@@ -45,9 +46,10 @@ namespace FootballTeamGenerator
                 }
             }
         }
-        private int Sprint
+        public int Sprint
         {
-            set
+            get { return sprint; }
+            private set
             {
                 if (ValidateStats("Sprint", value))
                 {
@@ -55,9 +57,10 @@ namespace FootballTeamGenerator
                 }
             }
         }
-        private int Dribble
+        public int Dribble
         {
-            set
+            get { return dribble; }
+            private set
             {
                 if (ValidateStats("Dribble", value))
                 {
@@ -65,9 +68,10 @@ namespace FootballTeamGenerator
                 }
             }
         }
-        private int Passing
+        public int Passing
         {
-            set
+            get { return passing; }
+            private set
             {
                 if (ValidateStats("Passing", value))
                 {
@@ -75,9 +79,10 @@ namespace FootballTeamGenerator
                 }
             }
         }
-        private int Shooting
+        public int Shooting
         {
-            set
+            get { return shooting; }
+            private set
             {
                 if (ValidateStats("Shooting", value))
                 {
