@@ -22,7 +22,7 @@ namespace FootballTeamGenerator
             {
                 if (string.IsNullOrWhiteSpace(value))
                 {
-                    throw new ArgumentException("A name should not be empty.");
+                    throw new ArgumentException(ExceptionMessages.NameCannotBeNullOrWhiteSpace);
                 }
                 name = value;
             }
@@ -43,11 +43,19 @@ namespace FootballTeamGenerator
         
         public void RemovePlayer(string playerName)
         {
-            if (!players.Any(p => p.Name == playerName))
+            var playerToRemove = players.FirstOrDefault(p => p.Name == playerName);
+
+            if (playerToRemove == null)
             {
-                throw new ArgumentException($"Player {playerName} is not in {this.Name} team.");
+                throw new InvalidOperationException(string.Format(ExceptionMessages.MissingPlayerMessage,
+                    playerName, this.Name));
             }
-            players.Remove(players.Find(p => p.Name == playerName));
+            players.Remove(playerToRemove);
+        }
+
+        public override string ToString()
+        {
+            return $"{this.Name} - {this.Rating}";
         }
     }
 }

@@ -7,21 +7,12 @@ namespace FootballTeamGenerator
     public class Player
     {
         private string name;
+        private Stats stats;
 
-        private int endurance;
-        private int sprint;
-        private int dribble;
-        private int passing;
-        private int shooting;
-
-        public Player(string name,int endurance, int sprint, int dribble, int passing, int shooting)
+        public Player(string name, int endurance, int sprint, int dribble, int passing, int shooting)
         {
             Name = name;
-            Endurance = endurance;
-            Sprint = sprint;
-            Dribble = dribble;
-            Passing = passing;
-            Shooting = shooting;
+            stats = new Stats(endurance, sprint, dribble, passing, shooting);
         }
         public string Name
         {
@@ -30,64 +21,9 @@ namespace FootballTeamGenerator
             {
                 if (string.IsNullOrWhiteSpace(value))
                 {
-                    throw new ArgumentException("A name should not be empty.");
+                    throw new ArgumentException(string.Format(ExceptionMessages.NameCannotBeNullOrWhiteSpace));
                 }
                 name = value;
-            }
-        }
-        public int Endurance
-        {
-            get { return endurance; }
-            private set
-            {
-                if (ValidateStats("Endurance", value))
-                {
-                    endurance = value;
-                }
-            }
-        }
-        public int Sprint
-        {
-            get { return sprint; }
-            private set
-            {
-                if (ValidateStats("Sprint", value))
-                {
-                    sprint = value;
-                }
-            }
-        }
-        public int Dribble
-        {
-            get { return dribble; }
-            private set
-            {
-                if (ValidateStats("Dribble", value))
-                {
-                    dribble = value;
-                }
-            }
-        }
-        public int Passing
-        {
-            get { return passing; }
-            private set
-            {
-                if (ValidateStats("Passing", value))
-                {
-                    passing = value;
-                }
-            }
-        }
-        public int Shooting
-        {
-            get { return shooting; }
-            private set
-            {
-                if (ValidateStats("Shooting", value))
-                {
-                    shooting = value;
-                }
             }
         }
 
@@ -95,16 +31,8 @@ namespace FootballTeamGenerator
         {
             get
             {
-                return (endurance + passing + shooting + sprint + dribble) / 5.0;
+                return (stats.Endurance + stats.Passing + stats.Shooting + stats.Sprint + stats.Dribble) / 5.0;
             }
-        }
-        private bool ValidateStats(string statName, int value)
-        {
-            if (value >= 0 && value <= 100)
-            {
-                return true;
-            }
-            throw new ArgumentException($"{statName} should be between 0 and 100.");
         }
     }
 }

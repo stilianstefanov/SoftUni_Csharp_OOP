@@ -6,62 +6,81 @@ namespace FootballTeamGenerator
 {
     public class StartUp
     {
+        private static List<Team> teams;
+
         static void Main(string[] args)
         {
-            List<Team> teams = new List<Team>();
+            teams = new List<Team>();
 
-            string command;
-            while ((command = Console.ReadLine()) != "END")
+            RunEngine();
+        }
+
+        private static void RunEngine()
+        {
+            string input;
+            while ((input = Console.ReadLine()) != "END")
             {
-                string[] tokens = command.Split(";", StringSplitOptions.RemoveEmptyEntries);
+                string[] tokens = input.Split(";", StringSplitOptions.RemoveEmptyEntries);
                 try
                 {
-                    switch (tokens[0])
+                    string command = tokens[0];
+                    string teamName = tokens[1];
+                    switch (command)
                     {
                         case "Team":
-                            teams.Add(new Team(tokens[1]));
+                            teams.Add(new Team(teamName));
                             break;
                         case "Add":
-                            var team = teams.FirstOrDefault(t => t.Name == tokens[1]);
-                            if (team == null)
-                            {
-                                Console.WriteLine($"Team {tokens[1]} does not exist.");
-                            }
-                            else
-                            {
-                                var newPlayer = new Player(tokens[2], int.Parse(tokens[3]), int.Parse(tokens[4]), int.Parse(tokens[5]), int.Parse(tokens[6]), int.Parse(tokens[7]));
-                                team.AddPlayer(newPlayer);
-                            }
+                            AddPlayer(tokens, teamName);
                             break;
                         case "Remove":
-                            var teamRemove = teams.FirstOrDefault(t => t.Name == tokens[1]);
-                            if (teamRemove == null)
-                            {
-                                Console.WriteLine($"Team {tokens[1]} does not exist.");
-                            }
-                            else
-                            {
-                                teamRemove.RemovePlayer(tokens[2]);
-                            }
+                            RemovePlayer(tokens, teamName);
                             break;
                         case "Rating":
-                            var teamRating = teams.FirstOrDefault(t => t.Name == tokens[1]);
-                            if (teamRating == null)
-                            {
-                                Console.WriteLine($"Team {tokens[1]} does not exist.");
-                            }
-                            else
-                            {
-                                Console.WriteLine($"{teamRating.Name} - {teamRating.Rating}");
-                            }
+                            Rating(tokens, teamName);
                             break;
                     }
                 }
-                catch(Exception e)
+                catch (Exception e)
                 {
                     Console.WriteLine(e.Message);
                 }
             }
+        }
+
+        private static void Rating(string[] tokens, string teamName)
+        {
+            var team = teams.FirstOrDefault(t => t.Name == tokens[1]);
+            if (team == null)
+            {
+                throw new InvalidOperationException(string.Format(ExceptionMessages.InexistingTeamMessage, teamName));
+            }
+            Console.WriteLine(team);
+        }
+
+        private static void RemovePlayer(string[] tokens, string teamName)
+        {
+            var team = teams.FirstOrDefault(t => t.Name == tokens[1]);
+            string playerName = tokens[2];
+            if (team == null)
+            {
+                throw new InvalidOperationException(string.Format(ExceptionMessages.InexistingTeamMessage, teamName));
+            }
+
+            team.RemovePlayer(playerName);
+        }
+
+        private static void AddPlayer(string[] tokens, string teamName)
+        {
+            var team = teams.FirstOrDefault(t => t.Name == tokens[1]);
+            if (team == null)
+            {
+                throw new InvalidOperationException(string.Format(ExceptionMessages.InexistingTeamMessage, teamName));
+            }
+            var newPlayer = new Player(tokens[2], int.Parse(tokens[3]), int.Parse(tokens[4]),
+                int.Parse(tokens[5]), int.Parse(tokens[6]), int.Parse(tokens[7]));
+
+            team.AddPlayer(newPlayer);
         }
     }
 }
