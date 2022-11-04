@@ -1,11 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace MilitaryElite.Models.Contracts
+﻿namespace MilitaryElite.Models.Contracts
 {
+    using System.Collections.Generic;
+
     public interface IEngineer : ISpecialisedSoldier
     {
-        public List<Repair> Repairs { get; }
+        public IReadOnlyCollection<Repair> Repairs { get; }
     }
 }

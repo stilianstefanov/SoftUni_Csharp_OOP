@@ -1,18 +1,21 @@
-﻿using MilitaryElite.Models.Contracts;
-using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace MilitaryElite.Models
+﻿namespace MilitaryElite.Models
 {
+    using System.Collections.Generic;
+    using System.Text;
+
+    using Contracts;
+    
+
+
     public class LieutenantGeneral : Private, ILieutenantGeneral
     {
-        
-        public LieutenantGeneral(string id, string firstName, string lastName, decimal salary, List<IPrivate> privateSoliders) : base(id, firstName, lastName, salary)
+        private readonly ICollection<IPrivate> privatesSoliders;
+        public LieutenantGeneral(string id, string firstName, string lastName, decimal salary, ICollection<IPrivate> privateSoliders) : base(id, firstName, lastName, salary)
         {
-            this.PrivateSoliders = privateSoliders;
+            this.privatesSoliders = privateSoliders;
         }
-         public List<IPrivate> PrivateSoliders { get; private set; }
+        public IReadOnlyCollection<IPrivate> PrivateSoliders
+           => (IReadOnlyCollection<IPrivate>)this.privatesSoliders;
 
         public override string ToString()
         {

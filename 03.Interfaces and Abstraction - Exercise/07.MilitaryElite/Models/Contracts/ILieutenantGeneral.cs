@@ -1,11 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace MilitaryElite.Models.Contracts
+﻿namespace MilitaryElite.Models.Contracts
 {
+    using System.Collections.Generic;
+
+
     public interface ILieutenantGeneral : IPrivate
     {
-        public List<IPrivate> PrivateSoliders { get; }
+        public IReadOnlyCollection<IPrivate> PrivateSoliders { get; }
     }
 }

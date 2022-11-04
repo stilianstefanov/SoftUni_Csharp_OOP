@@ -1,18 +1,22 @@
-﻿using MilitaryElite.Models.Contracts;
-using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace MilitaryElite.Models
+﻿namespace MilitaryElite.Models
 {
+    using System.Collections.Generic;
+    using System.Text;
+
+    using Contracts;
+
+
     public class Engineer : SpecialisedSoldier, IEngineer
     {
-        public Engineer(string id, string firstName, string lastName, decimal salary, string corps, List<Repair> repairs) : base(id, firstName, lastName, salary, corps)
+        private readonly ICollection<Repair> repairs;
+
+        public Engineer(string id, string firstName, string lastName, decimal salary, string corps, ICollection<Repair> repairs) : base(id, firstName, lastName, salary, corps)
         {
-            Repairs = repairs;
+            this.repairs = repairs;
         }
 
-        public List<Repair> Repairs { get; private set; }
+        public IReadOnlyCollection<Repair> Repairs 
+            => (IReadOnlyCollection<Repair>)this.repairs;
 
         public override string ToString()
         {

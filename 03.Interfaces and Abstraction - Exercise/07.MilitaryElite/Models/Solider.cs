@@ -1,13 +1,9 @@
-﻿using MilitaryElite.Models.Contracts;
-using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace MilitaryElite.Models
+﻿namespace MilitaryElite.Models
 {
-    public class Solider : ISolder
+    using Contracts;
+    public abstract class Solider : ISolder
     {
-        public Solider(string id, string firstName, string lastName)
+        protected Solider(string id, string firstName, string lastName)
         {
             Id = id;
             FirstName = firstName;

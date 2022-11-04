@@ -1,11 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace MilitaryElite.Models.Contracts
+﻿namespace MilitaryElite.Models.Contracts
 {
+    using System.Collections.Generic;
+
     public interface ICommando : ISpecialisedSoldier
     {
-        public List<Mission> Missions { get; }
+        public IReadOnlyCollection<Mission> Missions { get; }
     }
 }

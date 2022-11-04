@@ -1,10 +1,10 @@
-﻿using MilitaryElite.Models.Contracts;
-using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace MilitaryElite.Models
+﻿namespace MilitaryElite.Models
 {
+    using System;
+
+    using Models.Contracts;
+    
+
     public class Spy : Solider, ISpy
     {
         public Spy(string id, string firstName, string lastName, int codeNumber) : base(id, firstName, lastName)

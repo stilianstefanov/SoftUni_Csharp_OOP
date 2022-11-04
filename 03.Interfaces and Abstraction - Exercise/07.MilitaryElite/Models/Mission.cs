@@ -1,9 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace MilitaryElite.Models
+﻿namespace MilitaryElite.Models
 {
+    using System;
+
     public class Mission
     {
         private string state;

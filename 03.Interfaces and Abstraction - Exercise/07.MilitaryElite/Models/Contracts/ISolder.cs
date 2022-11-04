@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace MilitaryElite.Models.Contracts
+﻿namespace MilitaryElite.Models.Contracts
 {
     public interface ISolder
     {

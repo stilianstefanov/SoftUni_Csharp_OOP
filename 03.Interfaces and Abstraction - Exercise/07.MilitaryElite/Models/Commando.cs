@@ -1,17 +1,20 @@
-﻿using MilitaryElite.Models.Contracts;
-using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace MilitaryElite.Models
+﻿namespace MilitaryElite.Models
 {
+    using System.Collections.Generic;
+    using System.Text;
+
+    using Contracts;
+    
+
     public class Commando : SpecialisedSoldier, ICommando
     {
-        public Commando(string id, string firstName, string lastName, decimal salary, string corps, List<Mission> missions) : base(id, firstName, lastName, salary, corps)
+        private readonly ICollection<Mission> missions;
+        public Commando(string id, string firstName, string lastName, decimal salary, string corps, ICollection<Mission> missions) : base(id, firstName, lastName, salary, corps)
         {
-            Missions = missions;
+            this.missions = missions;
         }
-        public List<Mission> Missions { get; private set; }
+        public IReadOnlyCollection<Mission> Missions
+            => (IReadOnlyCollection<Mission>)this.missions;
 
         public override string ToString()
         {

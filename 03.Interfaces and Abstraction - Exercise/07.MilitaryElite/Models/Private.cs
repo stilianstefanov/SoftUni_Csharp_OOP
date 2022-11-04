@@ -1,10 +1,7 @@
-﻿using MilitaryElite.Models.Contracts;
-using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace MilitaryElite.Models
+﻿namespace MilitaryElite.Models
 {
+    using Contracts;
+
     public class Private : Solider, IPrivate
     {
         public Private(string id, string firstName, string lastName, decimal salary) : base(id, firstName, lastName)
