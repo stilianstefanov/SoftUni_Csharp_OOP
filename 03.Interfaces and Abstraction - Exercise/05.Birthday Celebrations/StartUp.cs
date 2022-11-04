@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BorderControl.Core.Contracts;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -8,8 +9,9 @@ namespace BorderControl
     {        
         static void Main(string[] args)
         {
-            BirthDayChecker checker = new BirthDayChecker();
-            checker.EngineRun();
+            IEngine checker = new BirthDayChecker();
+
+            checker.Run();
         }       
     }
 }

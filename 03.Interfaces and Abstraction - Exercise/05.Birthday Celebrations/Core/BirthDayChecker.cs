@@ -1,4 +1,5 @@
-﻿using BorderControl.Models;
+﻿using BorderControl.Core.Contracts;
+using BorderControl.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -6,11 +7,11 @@ using System.Text;
 
 namespace BorderControl
 {   
-    public class BirthDayChecker
+    public class BirthDayChecker : IEngine
     {
         private List<IBirthdayable> entities;
 
-        public void EngineRun()
+        public void Run()
         {
             entities = new List<IBirthdayable>();
 

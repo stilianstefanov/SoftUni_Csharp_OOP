@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BorderControl.Core.Contracts;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -8,8 +9,8 @@ namespace BorderControl
     {        
         static void Main(string[] args)
         {
-            FoodBuyer foodBuyer = new FoodBuyer();
-            foodBuyer.RunEngine();
+            IEngine foodBuyer = new FoodBuyer();
+            foodBuyer.Run();
         }       
     }
 }

@@ -1,15 +1,16 @@
-﻿using System;
+﻿using BorderControl.Core.Contracts;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
 namespace BorderControl
 {
-    public class FoodBuyer
+    public class FoodBuyer : IEngine
     {
         private List<IBuyer> buyers;
 
-        public void RunEngine()
+        public void Run()
         {
             buyers = new List<IBuyer>();
 

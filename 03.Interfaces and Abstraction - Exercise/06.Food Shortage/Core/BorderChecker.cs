@@ -1,15 +1,16 @@
-﻿using System;
+﻿using BorderControl.Core.Contracts;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
 namespace BorderControl
 {
-    public class BorderChecker
+    public class BorderChecker : IEngine
     {
         private List<IIdable> etities;
 
-        public void EngineRun()
+        public void Run()
         {
             etities = new List<IIdable>();
 
