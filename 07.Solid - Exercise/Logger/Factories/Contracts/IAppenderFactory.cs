@@ -1,6 +1,4 @@
-﻿
-
-namespace Logger.Factories.Contracts
+﻿namespace Logger.Factories.Contracts
 {
     using Logger.Core.Appenders.Contracts;
     using Logger.Core.Layouts.Contracts;

@@ -1,6 +1,4 @@
-﻿
-
-namespace Logger.Core.Appenders.Contracts
+﻿namespace Logger.Core.Appenders.Contracts
 {
     using Layouts.Contracts;
     using Enums;

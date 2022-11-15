@@ -1,6 +1,4 @@
-﻿
-
-namespace Logger.Core.Loggers
+﻿namespace Logger.Core.Loggers
 {
     using System.Collections.Generic;
     using System.Text;

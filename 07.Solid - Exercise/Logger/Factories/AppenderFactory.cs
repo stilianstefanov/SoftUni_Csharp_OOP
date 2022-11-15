@@ -1,15 +1,14 @@
-﻿
-
-
-
-namespace Logger.Factories
+﻿namespace Logger.Factories
 {
+    using System;
+
     using Contracts;
+
     using Logger.Core.Appenders;
     using Logger.Core.Appenders.Contracts;
     using Logger.Core.Enums;
     using Logger.Core.Layouts.Contracts;
-    using System;
+    
 
     public class AppenderFactory : IAppenderFactory
     {

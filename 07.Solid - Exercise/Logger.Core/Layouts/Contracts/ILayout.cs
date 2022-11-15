@@ -1,6 +1,4 @@
-﻿
-
-namespace Logger.Core.Layouts.Contracts
+﻿namespace Logger.Core.Layouts.Contracts
 {
     public interface ILayout
     {

@@ -1,5 +1,4 @@
-﻿
-namespace Logger.CustomLayouts
+﻿namespace Logger.CustomLayouts
 {
     using System;
 

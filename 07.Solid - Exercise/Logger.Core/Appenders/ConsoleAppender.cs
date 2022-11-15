@@ -1,6 +1,4 @@
-﻿
-
-namespace Logger.Core.Appenders
+﻿namespace Logger.Core.Appenders
 {
     using System;
 

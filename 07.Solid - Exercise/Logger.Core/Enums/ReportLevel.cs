@@ -1,6 +1,4 @@
-﻿
-
-namespace Logger.Core.Enums
+﻿namespace Logger.Core.Enums
 {
     public enum ReportLevel
     {

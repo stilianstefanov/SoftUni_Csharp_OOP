@@ -1,6 +1,4 @@
-﻿
-
-namespace Logger.Core.Models
+﻿namespace Logger.Core.Models
 {
     using Contracts;
     using Logger.Core.Enums;

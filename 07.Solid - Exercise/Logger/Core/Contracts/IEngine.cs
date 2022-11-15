@@ -1,6 +1,4 @@
-﻿
-
-namespace Logger.Contracts
+﻿namespace Logger.Contracts
 {
     public interface IEngine
     {

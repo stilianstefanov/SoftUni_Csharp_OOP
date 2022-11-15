@@ -1,11 +1,11 @@
-﻿
-namespace Logger.Factories
+﻿namespace Logger.Factories
 {
-
+    using Logger.CustomLayouts;
     using Contracts;
+
     using Logger.Core.Layouts;
     using Logger.Core.Layouts.Contracts;
-    using Logger.CustomLayouts;
+    
 
     public class LayoutFactory : ILayoutFactory
     {
