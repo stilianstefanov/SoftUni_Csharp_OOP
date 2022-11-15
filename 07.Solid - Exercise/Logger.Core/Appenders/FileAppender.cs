@@ -1,11 +1,14 @@
 ﻿
 
-namespace Logger.Appenders
+namespace Logger.Core.Appenders
 {
-    using Layouts.Contracts;
     using System.IO;
 
-    public class FileAppender : BaseAppender
+    using Layouts.Contracts;    
+    using Models.Contracts;
+    using Appenders.Contracts;
+
+    public class FileAppender : BaseAppender, IAppender
     {
         private string path = @"..\..\..\Text.txt";
         private LogFile logfile;
@@ -14,21 +17,20 @@ namespace Logger.Appenders
             this.logfile = file;
         }
 
-        public override void Append(ReportLevel errorType, string errorTime, string errorMessage)
+        public override void Append(IMessage message)
         {
-            if (errorType.CompareTo(this.ReportLevel) == -1)
-            {
+            if (CheckReportLevel(message.ReportLevel))
                 return;
-            }
-            string message = string.Format(Layout.Format, errorTime, errorType , errorMessage);
+            
+            string messageTemp = string.Format(Layout.Format, message.Date, message.ReportLevel , message.Text);
 
             using (StreamWriter writer = new StreamWriter(path, true))
             {
-                writer.WriteLine(message);
+                writer.WriteLine(messageTemp);
             }
 
             MessagesCount++;
-            logfile.Write(message);
+            logfile.Write(messageTemp);
         }
 
         public override string ToString()

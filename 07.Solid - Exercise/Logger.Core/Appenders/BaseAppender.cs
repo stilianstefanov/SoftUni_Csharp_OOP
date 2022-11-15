@@ -1,12 +1,13 @@
 ﻿
 
 
-namespace Logger.Appenders
+namespace Logger.Core.Appenders
 {
  
     using Contracts;
-    using Logger.Layouts.Contracts;
-
+    using Layouts.Contracts;
+    using Enums;
+    using Logger.Core.Models.Contracts;
 
     public abstract class BaseAppender : IAppender
     {
@@ -22,7 +23,10 @@ namespace Logger.Appenders
 
         public int MessagesCount { get; protected set; }
 
-        public abstract void Append(ReportLevel errorType, string errorTime, string errorMessage);
+        public abstract void Append(IMessage message);
+
+        protected bool CheckReportLevel(ReportLevel reportLevel)
+            =>  reportLevel.CompareTo(this.ReportLevel) == -1;
 
         public override string ToString()
         {

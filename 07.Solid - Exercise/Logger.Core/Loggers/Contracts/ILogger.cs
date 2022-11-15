@@ -1,6 +1,6 @@
 ﻿
 
-namespace Logger.Loggers.Contracts
+namespace Logger.Core.Loggers.Contracts
 {
    
     public interface ILogger

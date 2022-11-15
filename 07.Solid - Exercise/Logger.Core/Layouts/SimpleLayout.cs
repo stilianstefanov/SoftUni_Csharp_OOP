@@ -1,6 +1,6 @@
 ﻿
 
-namespace Logger.Layouts
+namespace Logger.Core.Layouts
 {
     using Contracts;
 

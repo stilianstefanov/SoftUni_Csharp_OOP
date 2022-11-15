@@ -1,13 +1,16 @@
 ﻿
 
-namespace Logger.Loggers
+namespace Logger.Core.Loggers
 {
     using System.Collections.Generic;
-    
+    using System.Text;
 
     using Contracts;
     using Appenders.Contracts;
-    using System.Text;
+    using Enums;
+    using Models.Contracts;
+    using Models;
+    
 
     public class Logger : ILogger
     {
@@ -27,7 +30,7 @@ namespace Logger.Loggers
         {
             foreach (IAppender appender in appenders)
             {
-                appender.Append(ReportLevel.CRITICAL, date, message);
+                appender.Append(CreateMessage(ReportLevel.CRITICAL, date, message));
             }
         }
 
@@ -35,7 +38,7 @@ namespace Logger.Loggers
         {
             foreach (IAppender appender in appenders)
             {
-                appender.Append(ReportLevel.ERROR, date, message);
+                appender.Append(CreateMessage(ReportLevel.ERROR, date, message));
             }
         }
 
@@ -43,7 +46,7 @@ namespace Logger.Loggers
         {
             foreach (IAppender appender in appenders)
             {
-                appender.Append(ReportLevel.FATAL, date, message);
+                appender.Append(CreateMessage(ReportLevel.FATAL, date, message));
             }
         }
 
@@ -51,7 +54,7 @@ namespace Logger.Loggers
         {
             foreach (IAppender appender in appenders)
             {
-                appender.Append(ReportLevel.INFO, date, message);
+                appender.Append(CreateMessage(ReportLevel.INFO, date, message));
             }
         }
 
@@ -59,9 +62,12 @@ namespace Logger.Loggers
         {
             foreach (IAppender appender in appenders)
             {
-                appender.Append(ReportLevel.WARNING, date, message);
+                appender.Append(CreateMessage(ReportLevel.WARNING, date, message));
             }
         }
+
+        private IMessage CreateMessage(ReportLevel reportLevel, string date, string message)
+            => new Message(reportLevel, date, message);
 
         public override string ToString()
         {

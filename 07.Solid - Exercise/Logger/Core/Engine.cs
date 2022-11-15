@@ -1,30 +1,37 @@
-﻿
-
-namespace Logger
+﻿namespace Logger
 {
+    
     using System;
     using System.Collections.Generic;
 
+    using Logger.Core.Appenders.Contracts;   
+    using Logger.Core.Loggers.Contracts;
+    using Logger.Core.Loggers;    
+    using Logger.Core.Layouts.Contracts;   
+    using Contracts;
+    using Logger.Factories.Contracts;
 
-    using Appenders;
-    using Appenders.Contracts;
-    using Layouts;
-    using Layouts.Contracts;
-    using Loggers.Contracts;   
-    using Loggers;
-
-
-    public class CommandInterpreter
+    public class Engine : IEngine
     {
         private int appendersCount;
+        private ICollection<IAppender> appenders;
+        private ILogger logger;
+        private IAppenderFactory appenderFactory;
+        private ILayoutFactory layoutFactory;
+
+        public Engine(IAppenderFactory appenderFactory, ILayoutFactory layoutFactory)
+        {
+            this.appenderFactory = appenderFactory;
+            this.layoutFactory = layoutFactory;
+        }
 
         public void Run()
         {
             appendersCount = int.Parse(Console.ReadLine());
 
-            ICollection<IAppender> appenders = GetAppenders();
+            appenders = GetAppenders();
 
-            ILogger logger = new Logger(appenders);
+            logger = new Logger(appenders);
 
             ProcessCommand(logger);
 
@@ -83,48 +90,13 @@ namespace Logger
                 if (appenderTokens.Length == 3)
                     reportLevel = appenderTokens[2];
 
-                layout = CreateLayout(layoutType);
-                appender = CreateAppender(appenderType, layout, reportLevel);
+                layout = layoutFactory.CreateLayout(layoutType);
+                appender = appenderFactory.CreateAppender(appenderType, layout, reportLevel);
 
                 appenders.Add(appender);
             }
 
             return appenders;
-        }
-
-        private IAppender CreateAppender(string appenderType, ILayout layout, string reportLevel)
-        {
-            IAppender appender = null;
-
-            switch (appenderType)
-            {
-                case "ConsoleAppender":
-                    appender = new ConsoleAppender(layout);
-                    break;
-                case "FileAppender":
-                    appender = new FileAppender(layout, new LogFile());
-                        break;
-                default:
-                    break;
-            }
-
-            if (reportLevel != string.Empty)
-                appender.ReportLevel = Enum.Parse<ReportLevel>(reportLevel);
-
-            return appender;
-        }
-
-        private ILayout CreateLayout(string layoutType)
-        {
-            switch (layoutType)
-            {
-                case "SimpleLayout":
-                    return new SimpleLayout();
-                case "XmlLayout":
-                    return new XmlLayout();
-                default:
-                    return null;                    
-            }
-        }
+        }    
     }
 }

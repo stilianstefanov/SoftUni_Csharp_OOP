@@ -1,9 +1,7 @@
 ﻿
 
-namespace Logger.Appenders
-{
-    using System;
-    using System.Linq;
+namespace Logger.Core.Appenders
+{   
     using System.Text;
 
     public class LogFile

@@ -1,11 +1,10 @@
 ﻿
-
-
-
-namespace Logger.Layouts
+namespace Logger.CustomLayouts
 {
-    using Contracts;
     using System;
+
+    using Logger.Core.Layouts.Contracts;
+   
 
     public class XmlLayout : ILayout
     {
