@@ -160,17 +160,17 @@
             return OutputMessages.NoWinner;
         }
 
-        private string WinnerAction(IPlanet attackerPlanet, IPlanet deffenderPlanet)
+        private string WinnerAction(IPlanet winnerPlanet, IPlanet defeatedPlanet)
         {
-            attackerPlanet.Spend(attackerPlanet.Budget / 2);
-            attackerPlanet.Profit(deffenderPlanet.Budget / 2);
+            winnerPlanet.Spend(winnerPlanet.Budget / 2);
+            winnerPlanet.Profit(defeatedPlanet.Budget / 2);
 
-            double unitsAndWeaponsTotalCost = GetWeaponsAndArmyTotalCost(deffenderPlanet);
-            attackerPlanet.Profit(unitsAndWeaponsTotalCost);
+            double unitsAndWeaponsTotalCost = GetWeaponsAndArmyTotalCost(defeatedPlanet);
+            winnerPlanet.Profit(unitsAndWeaponsTotalCost);
 
-            planets.RemoveItem(deffenderPlanet.Name);
+            planets.RemoveItem(defeatedPlanet.Name);
 
-            return string.Format(OutputMessages.WinnigTheWar, attackerPlanet.Name, deffenderPlanet.Name);
+            return string.Format(OutputMessages.WinnigTheWar, winnerPlanet.Name, defeatedPlanet.Name);
         }
 
         private IMilitaryUnit CreatNewUnit(string unitTypeName)
