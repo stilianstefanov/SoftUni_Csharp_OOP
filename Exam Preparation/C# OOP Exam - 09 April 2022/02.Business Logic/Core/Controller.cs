@@ -79,11 +79,7 @@
             if (cars.Models.Any(p => p.Model == model))
             {
                 throw new InvalidOperationException(string.Format(ExceptionMessages.CarExistErrorMessage, model));
-            }
-            if (type != "Williams" && type != "Ferrari")
-            {
-                throw new InvalidOperationException(string.Format(ExceptionMessages.InvalidTypeCar, type));
-            }
+            }     
 
             IFormulaOneCar newCar = null;
             switch (type)
@@ -93,7 +89,9 @@
                     break;
                 case "Ferrari":
                     newCar = new Ferrari(model, horsepower, engineDisplacement);
-                    break;              
+                    break;
+                default:
+                    throw new InvalidOperationException(string.Format(ExceptionMessages.InvalidTypeCar, type));
             }
             cars.Add(newCar);
 
