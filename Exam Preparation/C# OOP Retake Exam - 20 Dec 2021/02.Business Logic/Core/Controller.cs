@@ -100,11 +100,7 @@
             {
                 return string.Format(OutputMessages.VesselIsAlreadyManufactured, vesselType, name);
             }
-            if (vesselType != "Battleship" && vesselType != "Submarine")
-            {
-                return OutputMessages.InvalidVesselType;
-            }
-
+  
             IVessel newVessel = null;
             switch (vesselType)
             {
@@ -113,7 +109,9 @@
                     break;
                 case "Submarine":
                     newVessel = new Submarine(name, mainWeaponCaliber, speed);
-                    break;               
+                    break;
+                default:
+                    return OutputMessages.InvalidVesselType;
             }
 
             vessels.Add(newVessel);
