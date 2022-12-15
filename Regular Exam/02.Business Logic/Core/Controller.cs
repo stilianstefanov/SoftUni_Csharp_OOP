@@ -119,7 +119,9 @@
 
         public string ReserveBooth(int countOfPeople)
         {
-            var boothsAvaliable = booths.Models.Where(b => !b.IsReserved && b.Capacity >= countOfPeople)
+            var boothsAvaliable = booths
+                .Models
+                .Where(b => !b.IsReserved && b.Capacity >= countOfPeople)
                 .OrderBy(b => b.Capacity)
                 .ThenByDescending(b => b.BoothId)
                 .ToList();
@@ -155,7 +157,9 @@
 
             if (cockTailSize == string.Empty)
             {
-                var delicacy = booth.DelicacyMenu.Models
+                var delicacy = booth
+                    .DelicacyMenu
+                    .Models
                     .FirstOrDefault(d => d.Name == itemName);
 
                 if (delicacy == null)
@@ -163,7 +167,9 @@
             }
             else
             {
-                var cocktail = booth.CocktailMenu.Models
+                var cocktail = booth
+                    .CocktailMenu
+                    .Models
                     .FirstOrDefault(d => d.Name == itemName);
 
                 if (cocktail == null)
@@ -185,7 +191,9 @@
             }
             else
             {
-                var cocktail = booth.CocktailMenu.Models
+                var cocktail = booth
+                    .CocktailMenu
+                    .Models
                     .FirstOrDefault(d => d.Name == itemName 
                     && d.GetType().Name == itemTypeName 
                     && d.Size == cockTailSize);
