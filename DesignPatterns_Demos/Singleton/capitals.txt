@@ -1,0 +1,6 @@
+Varna
+200000
+Sofia
+3000000
+Plovidv
+35000
